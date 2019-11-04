@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -14,20 +15,19 @@ import polinema.ac.id.androiduistarter.fragments.fragments.DiscountFragment;
 import polinema.ac.id.androiduistarter.fragments.fragments.FoodFragment;
 import polinema.ac.id.androiduistarter.fragments.fragments.MovieFragment;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadFragment(new FoodFragment());
+//        loadFragment(new FoodFragment());
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
-        // beri listener pada saat item/menu bottomnavigation terpilih
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
 
-    private boolean loadFragment(Fragment fragment) {
-        if (fragment != null) {
+    private boolean loadFragment(Fragment fragment){
+        if(fragment != null){
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, fragment)
                     .addToBackStack(null)
@@ -37,10 +37,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return false;
     }
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Fragment fragment = null;
-        switch (menuItem.getItemId()) {
+        switch (menuItem.getItemId()){
             case R.id.action_food:
                 fragment = new FoodFragment();
                 break;
@@ -51,7 +52,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 fragment = new DiscountFragment();
                 break;
         }
-        return loadFragment(fragment);
+//        return loadFragment(fragment);
+        return true;
     }
 
     @Override
